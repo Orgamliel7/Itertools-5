@@ -1,17 +1,20 @@
 #pragma once
 #include <iostream>
 
-namespace itertools{
-class range {
+namespace itertools
+{
+class range 
+{
 public:
     int start_ind, end_ind;
 
 public:
-    range(int from, int to) : start_ind(from), end_ind(to) {};
+    range(int from, int to) : start_ind(from), end_ind(to) {}; // בנאי השמה עם רשימת אתחול 
 
-    class iterator {
-    public:
-        iterator(int curr = 0) : curr(curr) {};
+    class iterator
+    {
+    public: // דיפולטיבית זה גישה פרטית
+        iterator(int curr = 0) : curr(curr) {}; 
     private:
         int curr;
 
