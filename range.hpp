@@ -3,10 +3,12 @@
 
 namespace itertools
 {
+    // example: range(5,9) מייצג את המספרים 5,6,7,8.
+    // מקבל כקלט שני מספרים שלמים, ומייצג את כל המספרים שבין הראשון לאחרון, כולל הראשון ולא כולל האחרון
 class range 
 {
 public:
-    int start_ind, end_ind;
+    int start_ind, end_ind;   // אינדקסים שמייצגים התחלה וסוף של ה
 
 public:
     range(int from, int to) : start_ind(from), end_ind(to) {}; // בנאי השמה עם רשימת אתחול 
@@ -14,7 +16,7 @@ public:
     class iterator
     {
     public: // דיפולטיבית זה גישה פרטית
-        iterator(int curr = 0) : curr(curr) {}; 
+        iterator(int curr = 0) : curr(curr) {};  // רשימת אתחול של curr=0
     private:
         int curr;
 
