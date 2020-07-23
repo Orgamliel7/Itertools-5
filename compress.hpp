@@ -2,13 +2,17 @@
 
 namespace itertools
 {
-
+    /*
+מקבל כקלט שני מיכלים או דמויי-מיכלים, שחייבים להיות באותו אורך
+הראשון כולל עצמים מסוג כלשהו, והשני חייב לכלול עצמים מסוג בוליאני
+true מחזיר דמוי-מיכל חדש שבו מופיעים איברים מהדמוי-מיכל הראשון, שהאיבר המתאים להם בדמוי-מיכל השני הוא
+*/
     template <typename C, typename B>
     class compress
     {
     protected:
-        C container;
-        B b_container; // boolean container
+        C container; // מיכל/דמוי מיכל עצמים כלשהוא
+        B b_container; // מיכל/דמוי מיכל עצמים בוליאני
 
     public:
         compress(C c, B b)
@@ -17,22 +21,22 @@ namespace itertools
         class iterator
         {
         protected:
-            typename C::iterator it;
-            typename C::iterator last;
-            typename B::iterator b_it; //boolean iterator
+            typename C::iterator it; // איטרטור לתחילת המיכל הרגיל
+            typename C::iterator last; // איטרטור לסוף המיכל הרגיל
+            typename B::iterator b_it; //איטרטור בוליאני
 
         public:
             iterator(typename C::iterator first, typename C::iterator l, typename B::iterator b)
                 : it(first), last(l), b_it(b)
             {
-                while (it != last && !(*b_it))
+                while (it != last && !(*b_it)) //במיכל הבינארי false כל עוד לא הגענו לסוף המיכל הרגיל וגם יש 
                 {
-                    ++it;
-                    ++b_it;
+                    ++it; // קידום המיכל הרגיל
+                    ++b_it; // קידום המיכל הבינארי
                 }
             }
 
-            // ++i;
+            // ++i העמסת האופרטור
             iterator &operator++()
             {
                 ++it;
