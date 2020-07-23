@@ -5,6 +5,7 @@ using namespace std;
 
 namespace itertools
 {
+    //  מקבל כקלט מיכל או דמוי-מיכל כלשהו. מחזיר דמוי-מיכל חדש הכולל סכומים חלקיים. 
     auto _sum = [](auto x, auto y) { return x + y; };
 
     template <typename C, typename F = decltype(_sum)>
@@ -18,13 +19,13 @@ namespace itertools
         accumulate(C c, F f = _sum)
             : container(c), function(f) {}
 
-        class iterator
+        class iterator // מחלקת איטרטור שנגדיר לה אופרטורים 
         {
         protected:
             F function;
             typename C::iterator it;
             typename C::iterator last;
-            typename decay<decltype(*(container.begin()))>::type aggr;//aggregated value
+            typename decay<decltype(*(container.begin()))>::type aggr;//ערך מצטבר
             
 
         public:
