@@ -8,7 +8,7 @@ namespace itertools
     //  מקבל כקלט מיכל או דמוי-מיכל כלשהו. מחזיר דמוי-מיכל חדש הכולל סכומים חלקיים. 
     auto _sum = [](auto x, auto y) { return x + y; };
 
-    template <typename C, typename F = decltype(_sum)>
+    template <typename C, typename F = decltype(_sum)> //  return type depends on template parameters 
     class accumulate
     {
     protected:
@@ -23,16 +23,16 @@ namespace itertools
         {
         protected:
             F function;
-            typename C::iterator it;
-            typename C::iterator last;
+            typename C::iterator it; // איטרטור להתחלת המיכל
+            typename C::iterator last; // איטרטור לסוף המיכל
             typename decay<decltype(*(container.begin()))>::type aggr;//ערך מצטבר
             
 
         public:
-            iterator(typename C::iterator first, typename C::iterator l, F fun)
-                : it(first), last(l), function(fun)
+            iterator(typename C::iterator first, typename C::iterator l, F fun) // בנאי למחלקת איטרטור המקבל שני איטרטורים ופונקטור בינארי 
+                : it(first), last(l), function(fun) // רשימת אתחול 
             {
-                if (it != last)
+                if (it != last) 
                     aggr = *it;
             }
 
